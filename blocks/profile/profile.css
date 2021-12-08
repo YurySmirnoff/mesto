@@ -1,10 +1,8 @@
 .profile {
-  max-width: (100% - 400px);
   display: grid;
   grid-template-areas: "profile__avatar profile__title add-button";
   grid-template-columns: 120px 366px 1fr;
   margin: 40px auto 0;
-  /* justify-content: space-between; */
   align-items: center;
   max-width: 880px;
 }
