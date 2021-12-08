@@ -1,0 +1,9 @@
+.profile__info-author-wrap {
+  display: flex;
+  align-items: baseline;
+}
+@media screen and (max-width: 680px) {
+  .profile__info-author-wrap {
+    margin-left: 24px;
+  }
+}
