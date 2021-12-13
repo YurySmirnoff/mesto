@@ -8,7 +8,6 @@
 }
 @media screen and (max-width: 880px) {
   .profile {
-    display: grid;
     grid-template-areas:
       "profile__avatar profile__title"
       "add-button add-button";

@@ -3,7 +3,8 @@
   height: 24px;
   border: 1px solid #ffffff;
   box-sizing: border-box;
-  background-image: url(../../../images/button-edit.png);
+  background-image: url(../../../images/button-edit.svg);
+  background-color: #000;
   background-position: center;
   background-repeat: no-repeat;
   margin-left: 18px;

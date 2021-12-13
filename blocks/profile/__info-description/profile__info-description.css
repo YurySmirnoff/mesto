@@ -5,11 +5,16 @@
   line-height: 22px;
   margin: 0;
   margin-top: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 336px;
 }
 @media screen and (max-width: 680px) {
   .profile__info-description {
     font-size: 14px;
     line-height: 17px;
     margin: 9px auto 0;
+    max-width: 282px;
   }
 }
