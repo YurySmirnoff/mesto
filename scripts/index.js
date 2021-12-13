@@ -1,4 +1,4 @@
-let popupEditProfileForm = document.querySelector(".popup__container");
+let popupEditProfileForm = document.querySelector(".popup-container");
 let popupCloseButton = popupEditProfileForm.querySelector(
   ".popup__button-close");
 
