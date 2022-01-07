@@ -73,24 +73,12 @@ const initialCards = [
 
 //************************ Функции и обработчики событий ********************
 //открыть/отобразить заданное модальное окно (modal)
-//функции содержит в себе только переключение классов
 function openPopup(modal) {
-  if (modal.classList.contains("popup_closed")) {
-    modal.classList.remove("popup_closed");
-  }
-  if (!modal.classList.contains("popup_opened")) {
-    modal.classList.add("popup_opened");
-  }
+  modal.classList.add("popup_opened");
 }
 //закрыть заданное модальное окно (modal)
-//функции содержит в себе только переключение классов
 function closePopup(modal) {
-  if (modal.classList.contains("popup_opened")) {
-    modal.classList.remove("popup_opened");
-  }
-  if (!modal.classList.contains("popup_closed")) {
-    modal.classList.add("popup_closed");
-  }
+  modal.classList.remove("popup_opened");
 }
 //удаление карточки
 function deleteCardHandler(event) {
