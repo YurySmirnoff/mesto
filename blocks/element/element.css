@@ -4,8 +4,7 @@
   display: grid;
   grid-template-columns: 282px;
   grid-template-rows: 282px 79px;
-  max-width: 282px;
   box-sizing: border-box;
   overflow: hidden;
-  position: relative;
+  position:relative;
 }

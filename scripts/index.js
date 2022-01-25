@@ -3,7 +3,7 @@
 const popupEditProfile = document.querySelector(".popup_type_edit");
 const addCardModal = document.querySelector(".popup_type_add-card");
 const popupImageView = document.querySelector(".popup_image_view");
-
+const popups = document.querySelectorAll(".popup");
 //формы
 const popupEditProfileForm = popupEditProfile.querySelector(".popup__form");
 const addCardForm = addCardModal.querySelector(".popup__form");
@@ -29,6 +29,7 @@ const descriptionInputField = popupEditProfile.querySelector(
 );
 const inputCardName = document.querySelector("#add-card-name-field");
 const inputCardLink = document.querySelector("#add-card-link-field");
+const formInput = popupEditProfileForm.querySelector(".popup__input");
 //элементы
 const profileSection = document.querySelector(".profile");
 const profileName = profileSection.querySelector(".profile__info-author");
@@ -73,12 +74,22 @@ const initialCards = [
 
 //************************ Функции и обработчики событий ********************
 //открыть/отобразить заданное модальное окно (modal)
+//функция закрытия popup при нажетии ESC
+function closePopupByEsc(event) {
+  if (event.key === "Escape") {
+    const activePopup = document.querySelector(".popup_opened");
+    closePopup(activePopup);
+  }
+}
+
 function openPopup(modal) {
   modal.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupByEsc);
 }
 //закрыть заданное модальное окно (modal)
 function closePopup(modal) {
   modal.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupByEsc);
 }
 //удаление карточки
 function deleteCardHandler(event) {
@@ -120,10 +131,12 @@ function createCard(name, link) {
   //возвращается созданная карточка
   return cardElement;
 }
+
 //функция добавления карточки в контейнер
 function addCard(container, cardElement) {
   container.prepend(cardElement); //cardElement добавляется в container }
 }
+
 //получить значения для полей формы редактирования профиля
 //промежуточная функция, внутри которой устанавливаются необходимые значения
 function getFieldPopupEditProfile() {
@@ -137,8 +150,10 @@ profileEditButton.addEventListener("click", () => {
   getFieldPopupEditProfile();
   openPopup(popupEditProfile);
 });
+
 //закрытие popup-формы редактирования профиля
 popupCloseButton.addEventListener("click", () => closePopup(popupEditProfile));
+
 //отправка и закрытие popup-формы редактирования профиля
 popupEditProfile.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -147,6 +162,7 @@ popupEditProfile.addEventListener("submit", (event) => {
   document.getElementById("edit-profile-form").reset();
   closePopup(popupEditProfile);
 });
+
 //отправка и закрытие popup-формы добавления новой карточки
 addCardForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -154,12 +170,14 @@ addCardForm.addEventListener("submit", (event) => {
   document.getElementById("add-card-form").reset();
   closePopup(addCardModal);
 });
+
 //открытие popup-формы добавления новой карточки
 addCardButton.addEventListener("click", () => openPopup(addCardModal));
 //закрытие popup-формы добавления новой карточки
 closeAddCardModalButton.addEventListener("click", () =>
   closePopup(addCardModal)
 );
+
 //закрытие popup-формы просмотра фото карточки
 closeImageViewButton.addEventListener("click", () =>
   closePopup(popupImageView)
@@ -169,4 +187,12 @@ closeImageViewButton.addEventListener("click", () =>
 //инициализация - первоначальное создание и размещение карточек мест на странице
 initialCards.forEach((item) => {
   addCard(listCards, createCard(item.name, item.link));
+});
+//расстановка "слушателей" на click overlay
+popups.forEach((popup) => {
+  popup.addEventListener("click", (event) => {
+    if (!event.target.closest(".popup__container")) {
+      closePopup(popup);
+    }
+  });
 });

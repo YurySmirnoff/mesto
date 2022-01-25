@@ -7,9 +7,8 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
-  padding-bottom: 7px;
-  margin: 0 auto 30px;
-  box-sizing: border-box;
+  margin: 0;
+  padding: 5px 0 13px;
 }
 
 @media screen and (max-width: 680px) {
@@ -21,3 +20,4 @@
 .popup__input:last-of-type {
   margin-bottom: 0;
 }
+
