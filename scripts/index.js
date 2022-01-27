@@ -145,6 +145,7 @@ addCardForm.addEventListener("submit", (event) => {
   addCardForm.reset();
   closePopup(addCardModal);
   submitButtonAddCardForm.setAttribute("disabled", true);
+  submitButtonAddCardForm.classList.add(validationParameters.inactiveButtonClass);
 });
 
 //открытие popup-формы добавления новой карточки

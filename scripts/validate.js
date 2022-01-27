@@ -37,8 +37,8 @@ function toggleButtonSubmit(form, validationParameters) {
     submitButton.classList.remove(validationParameters.inactiveButtonClass);
     submitButton.removeAttribute("disabled");
   } else {
-    submitButton.classList.add(validationParameters.inactiveButtonClass);
     submitButton.setAttribute("disabled", true);
+    submitButton.classList.add(validationParameters.inactiveButtonClass);
   }
 }
 
