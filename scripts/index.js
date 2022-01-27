@@ -16,6 +16,9 @@ const closeAddCardModalButton = addCardModal.querySelector(
 const closeImageViewButton = popupImageView.querySelector(
   ".popup__button-close"
 );
+const submitButtonAddCardForm = addCardForm.querySelector(
+  ".popup__button-save"
+);
 
 const profileEditButton = document.querySelector(".profile__button-edit");
 const addCardButton = document.querySelector(".profile__button-add");
@@ -43,34 +46,6 @@ const popupImageCaption = popupImageView.querySelector(".popup__image-caption");
 const listCards = document.querySelector(".elements");
 //шаблон карточки
 const cardTemplate = document.querySelector(".card-template").content;
-
-//начальный массив карточек
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
 
 //************************ Функции и обработчики событий ********************
 //открыть/отобразить заданное модальное окно (modal)
@@ -159,7 +134,7 @@ popupEditProfile.addEventListener("submit", (event) => {
   event.preventDefault();
   profileName.textContent = nameInputField.value;
   profileDescription.textContent = descriptionInputField.value;
-  document.getElementById("edit-profile-form").reset();
+  popupEditProfileForm.reset();
   closePopup(popupEditProfile);
 });
 
@@ -167,8 +142,9 @@ popupEditProfile.addEventListener("submit", (event) => {
 addCardForm.addEventListener("submit", (event) => {
   event.preventDefault();
   addCard(listCards, createCard(inputCardName.value, inputCardLink.value));
-  document.getElementById("add-card-form").reset();
+  addCardForm.reset();
   closePopup(addCardModal);
+  submitButtonAddCardForm.setAttribute("disabled", true);
 });
 
 //открытие popup-формы добавления новой карточки
@@ -191,7 +167,7 @@ initialCards.forEach((item) => {
 //расстановка "слушателей" на click overlay
 popups.forEach((popup) => {
   popup.addEventListener("click", (event) => {
-    if (!event.target.closest(".popup__container")) {
+    if (event.target.classList.contains("popup")) {
       closePopup(popup);
     }
   });
